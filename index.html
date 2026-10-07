@@ -1087,7 +1087,7 @@
             { title: "Szepty Moreny — Zimno mi", src: "zimno-mi.mp3" },
         ];
 
-      // Funkcja losująca (Fisher-Yates shuffle) do przetasowania całej playlisty przy wejściu
+     // Funkcja losująca (Fisher-Yates shuffle) do przetasowania całej playlisty przy wejściu
         function shuffleArray(array) {
             let shuffled = [...array];
             for (let i = shuffled.length - 1; i > 0; i--) {
@@ -1162,15 +1162,28 @@
             playTrack();
         });
 
-        // Jedno, poprawne i płynne przechodzenie między utworami dla telefonu
+        // Natychmiastowe przejście do kolejnego utworu bez używania uśpionego przez telefon timera
         audio.addEventListener('ended', () => {
             currentIndex = (currentIndex + 1) % playlist.length;
             audio.src = playlist[currentIndex].src;
             trackInfo.textContent = playlist[currentIndex].title;
             
-            setTimeout(() => {
-                playTrack();
-            }, 800);
+            // Od razu ładujemy i gramy, bez czekania na zegar telefonu w tle
+            audio.load();
+            audio.play().then(() => {
+                playBtn.textContent = 'Pauza';
+                winyl.classList.add('rotating');
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.playbackState = 'playing';
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: playlist[currentIndex].title,
+                        artist: 'Szepty Moreny',
+                        album: 'Radio / Winyl'
+                    });
+                }
+            }).catch(err => {
+                console.log("Błąd przejścia w tle:", err);
+            });
         });
 
         // --- SPRYTNY STRAŻNIK TŁA (MediaSession) ---

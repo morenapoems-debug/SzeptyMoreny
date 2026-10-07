@@ -970,33 +970,32 @@
         </div>
 
         <div class="card" id="szepty">
-    <h2><span class="section-icon">🪶</span> Twoje Szepty</h2>
+   <h2><span class="section-icon">🪶</span> Twoje Szepty</h2>
     <p>Miejsce na szepty i myśli pozostawione przez tych, którzy tu zaglądają.</p>
     
     <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 25px; margin: 20px 0; text-align: left;">
         <p style="color: #ccc; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; text-align: center; font-style: italic;">
-            Zostaw tu cząstkę siebie...<br>Podziel się swoją myślą...<br>Po zatwierdzeniu zyska tutaj swoje miejsce.
+            Zostaw tu cząstkę siebie...<br>Podziel się swoją myślą...
         </p>
 
-        <form name="szepty-od-gosci" method="POST" data-netlify="true" style="display: flex; flex-direction: column; gap: 15px;">
-            <input type="hidden" name="form-name" value="szepty-od-gosci" />
-
-            <div>
-                <label style="display: block; color: #888; font-size: 0.85rem; margin-bottom: 5px; letter-spacing: 1px;">TWOJE IMIĘ LUB PSEUDONIM</label>
-                <input type="text" name="imie" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #fff; font-family: inherit; box-sizing: border-box;" placeholder="np. Anna">
-            </div>
-
-            <div>
-                <label style="display: block; color: #888; font-size: 0.85rem; margin-bottom: 5px; letter-spacing: 1px;">TWÓJ SZEPT (TREŚĆ WPISU)</label>
-                <textarea name="wiadomosc" rows="4" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; color: #fff; font-family: inherit; resize: vertical; box-sizing: border-box;" placeholder="Zostaw swoją myśl..."></textarea>
-            </div>
-
-            <button type="submit" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; cursor: pointer; font-family: inherit; font-size: 0.9rem; letter-spacing: 1px; transition: background 0.3s; align-self: center;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-                ZOSTAW SWÓJ ŚLAD
-            </button>
-        </form>
+        <!-- Tutaj wchodzi automatyczny widget komentarzy Giscus -->
+        <script src="https://giscus.app/client.js"
+                data-repo="morenapoems-debug/SzeptyMoreny"
+                data-repo-id="R_kgDOU-qlxw"
+                data-category="General"
+                data-category-id="DIC_kwDOU-qlx84DHP9F"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="dark_dimmed"
+                data-lang="pl"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
     </div>
-</div>
 
         <div class="card" id="kawa">
             <h2>Napij się ze mną kawy</h2>

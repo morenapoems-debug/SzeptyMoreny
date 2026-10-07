@@ -1087,7 +1087,7 @@
             { title: "Szepty Moreny — Zimno mi", src: "zimno-mi.mp3" },
         ];
 
-     // Funkcja losująca (Fisher-Yates shuffle) do przetasowania całej playlisty przy wejściu
+    // Funkcja losująca (Fisher-Yates shuffle) do przetasowania całej playlisty przy wejściu
         function shuffleArray(array) {
             let shuffled = [...array];
             for (let i = shuffled.length - 1; i > 0; i--) {
@@ -1101,6 +1101,7 @@
 
         const audio = document.getElementById('audioPlayer');
         const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn'); // Nowy przycisk wstecz
         const nextBtn = document.getElementById('nextBtn');
         const trackInfo = document.getElementById('trackInfo');
         const winyl = document.getElementById('winyl');
@@ -1156,6 +1157,16 @@
             }
         });
 
+        // Obsługa przycisku "Poprzedni"
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+                loadTrack(currentIndex);
+                playTrack();
+            });
+        }
+
+        // Obsługa przycisku "Następny"
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % playlist.length;
             loadTrack(currentIndex);
@@ -1168,7 +1179,6 @@
             audio.src = playlist[currentIndex].src;
             trackInfo.textContent = playlist[currentIndex].title;
             
-            // Od razu ładujemy i gramy, bez czekania na zegar telefonu w tle
             audio.load();
             audio.play().then(() => {
                 playBtn.textContent = 'Pauza';
@@ -1190,6 +1200,11 @@
         if ('mediaSession' in navigator) {
             navigator.mediaSession.setActionHandler('play', () => { playTrack(); });
             navigator.mediaSession.setActionHandler('pause', () => { pauseTrack(); });
+            navigator.mediaSession.setActionHandler('previoustrack', () => {
+                currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+                loadTrack(currentIndex);
+                playTrack();
+            });
             navigator.mediaSession.setActionHandler('nexttrack', () => {
                 currentIndex = (currentIndex + 1) % playlist.length;
                 loadTrack(currentIndex);
@@ -1212,8 +1227,8 @@
             counterEl.innerText = visits;
         }
     </script>
-        <footer class="site-footer">
-    <p>&copy; 2026 Szepty Moreny. Wszelkie prawa zastrzeżone.</p>
-</footer>
+    <footer class="site-footer">
+        <p>&copy; 2026 Szepty Moreny. Wszelkie prawa zastrzeżone.</p>
+    </footer>
 </body>
 </html>

@@ -1091,7 +1091,6 @@
 
         const audio = document.getElementById('audioPlayer');
         const playBtn = document.getElementById('playBtn');
-        const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const trackInfo = document.getElementById('trackInfo');
         const winyl = document.getElementById('winyl');
@@ -1115,7 +1114,6 @@
                         if (winyl) winyl.classList.add('rotating');
                     }).catch(err => {
                         console.log("Błąd odtwarzania:", err);
-                        // Jeśli pierwszy utwór napotka błąd, automatycznie przełącz na następny, żeby odblokować radio
                         currentIndex = (currentIndex + 1) % playlist.length;
                         loadTrack(currentIndex);
                         audio.play().catch(e => console.log("Kolejny też zablokowany:", e));
@@ -1139,24 +1137,13 @@
             });
         }
 
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-                loadTrack(currentIndex);
-                audio.play().then(() => {
-                    playBtn.textContent = 'Pauza';
-                    if (winyl) winyl.classList.add('rotating');
-                }).catch(err => console.log("Błąd prev:", err));
-            });
-        }
-
         audio.addEventListener('ended', () => {
             currentIndex = (currentIndex + 1) % playlist.length;
             loadTrack(currentIndex);
             audio.play().catch(err => console.log("Błąd ended:", err));
         });
 
-       // Załaduj pierwszy utwór przy starcie
+        // Załaduj pierwszy utwór przy starcie
         loadTrack(currentIndex);
 
         // Licznik odwiedzin

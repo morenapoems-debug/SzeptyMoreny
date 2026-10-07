@@ -1035,58 +1035,59 @@
             }
         }
 
-       const playlist = [
+      <script>
+        const playlist = [
             { title: "Szepty Moreny — Adios", src: "https://archive.org/download/szeoty-moreny-muzyka/Adios.mp3" },
-            { title: "Szepty Moreny — Córka mroku", src: "https://archive.org/download/szeoty-moreny-muzyka/Corkamroku.mp3" },
-            { title: "Szepty Moreny — Do snu", src: "https://archive.org/download/szeoty-moreny-muzyka/Dosnu.mp3" },
-            { title: "Szepty Moreny — Drzazga", src: "https://archive.org/download/szeoty-moreny-muzyka/Drzazga.mp3" },
-            { title: "Szepty Moreny — Głód miłości", src: "https://archive.org/download/szeoty-moreny-muzyka/Glodmilosci.mp3" },
-            { title: "Szepty Moreny — Gorzka czekolada", src: "https://archive.org/download/szeoty-moreny-muzyka/Gorzkaczekolada.mp3" },
-            { title: "Szepty Moreny — Iluzja", src: "https://archive.org/download/szeoty-moreny-muzyka/Iluzja.mp3" },
-            { title: "Szepty Moreny — Jak świecę", src: "https://archive.org/download/szeoty-moreny-muzyka/Jakswiece.mp3" },
-            { title: "Szepty Moreny — Kamienny golem", src: "https://archive.org/download/szeoty-moreny-muzyka/Kamiennygolem.mp3" },
-            { title: "Szepty Moreny — Mieliśmy być wspomnieniem", src: "https://archive.org/download/szeoty-moreny-muzyka/Mielismybycwspomnieniem.mp3" },
-            { title: "Szepty Moreny — Modlitwy", src: "https://archive.org/download/szeoty-moreny-muzyka/Modlitwy.mp3" },
-            { title: "Szepty Moreny — Monster", src: "https://archive.org/download/szeoty-moreny-muzyka/Monster.mp3" },
-            { title: "Szepty Moreny — Nie zasłużyliśmy na miłość", src: "https://archive.org/download/szeoty-moreny-muzyka/Niezasluzylismynamilosc.mp3" },
-            { title: "Szepty Moreny — Papierowy motyl", src: "https://archive.org/download/szeoty-moreny-muzyka/Papierowymotyl.mp3" },
-            { title: "Szepty Moreny — Pod tym samym niebem", src: "https://archive.org/download/szeoty-moreny-muzyka/Podtymsamymniebem.mp3" },
-            { title: "Szepty Moreny — Pokaż mi swoją miłość", src: "https://archive.org/download/szeoty-moreny-muzyka/Pokazmiswojamilosc.mp3" },
-            { title: "Szepty Moreny — Strzała amora", src: "https://archive.org/download/szeoty-moreny-muzyka/Strzalaamora.mp3" },
-            { title: "Szepty Moreny — Szczęścia łzy", src: "https://archive.org/download/szeoty-moreny-muzyka/Szczescialzy.mp3" },
-            { title: "Szepty Moreny — To tylko sen", src: "https://archive.org/download/szeoty-moreny-muzyka/Totylkosen.mp3" },
-            { title: "Szepty Moreny — Tyle co nic", src: "https://archive.org/download/szeoty-moreny-muzyka/Tyleconic.mp3" },
-            { title: "Szepty Moreny — Tylko ciebie", src: "https://archive.org/download/szeoty-moreny-muzyka/Tylkocebie.mp3" },
-            { title: "Szepty Moreny — W ciszy", src: "https://archive.org/download/szeoty-moreny-muzyka/Wciszy.mp3" },
-            { title: "Szepty Moreny — We śnie", src: "https://archive.org/download/szeoty-moreny-muzyka/Wesnie.mp3" },
-            { title: "Szepty Moreny — Anioły", src: "https://archive.org/download/szeoty-moreny-muzyka/Anioly.mp3" },
-            { title: "Szepty Moreny — Jesteś snem", src: "https://archive.org/download/szeoty-moreny-muzyka/Jestessnem1.mp3" },
-            { title: "Szepty Moreny — Fragmenty", src: "https://archive.org/download/szeoty-moreny-muzyka/Fragmenty.mp3" },
-            { title: "Szepty Moreny — We mgle", src: "https://archive.org/download/szeoty-moreny-muzyka/Wemgle.mp3" },
-            { title: "Szepty Moreny — Pozwól mi odejść", src: "https://archive.org/download/szeoty-moreny-muzyka/Pozwolmiodesc.mp3" },
-            { title: "Szepty Moreny — Wilczy głód", src: "https://archive.org/download/szeoty-moreny-muzyka/Wilczyglod.mp3" },
-            { title: "Szepty Moreny — Wpełznij", src: "https://archive.org/download/szeoty-moreny-muzyka/Wpelznij.mp3" },
-            { title: "Szepty Moreny — Szanuj czas", src: "https://archive.org/download/szeoty-moreny-muzyka/Szanujczas.mp3" },
-            { title: "Szepty Moreny — Żywy trup", src: "https://archive.org/download/szeoty-moreny-muzyka/Zywytrup.mp3" },
-            { title: "Szepty Moreny — Gościnna dziewczyna", src: "https://archive.org/download/szeoty-moreny-muzyka/Goscinnadziewczyna.mp3" },
-            { title: "Szepty Moreny — Brudny raj", src: "https://archive.org/download/szeoty-moreny-muzyka/Brudnyraj.mp3" },
-            { title: "Szepty Moreny — List miłosny pisany krwią", src: "https://archive.org/download/szeoty-moreny-muzyka/Listmilosnypisanykrwia.mp3" },
-            { title: "Szepty Moreny — Zbuntowany anioł", src: "https://archive.org/download/szeoty-moreny-muzyka/Zbuntowanyaniol.mp3" },
-            { title: "Szepty Moreny — Złoty strzał", src: "https://archive.org/download/szeoty-moreny-muzyka/Zlotystrzal.mp3" },
-            { title: "Szepty Moreny — Przychodzą, odchodzą", src: "https://archive.org/download/szeoty-moreny-muzyka/Przychodzaodchodza.mp3" },
-            { title: "Szepty Moreny — Oddam ci", src: "https://archive.org/download/szeoty-moreny-muzyka/Oddamci.mp3" },
-            { title: "Szepty Moreny — Nie przytulę wspomnień", src: "https://archive.org/download/szeoty-moreny-muzyka/Nieprzytulewspomnien.mp3" },
-            { title: "Szepty Moreny — Między nami", src: "https://archive.org/download/szeoty-moreny-muzyka/Miedzynami.mp3" },
-            { title: "Szepty Moreny — Marzy mi się", src: "https://archive.org/download/szeoty-moreny-muzyka/Marzymisie.mp3" },
-            { title: "Szepty Moreny — Zbyt blisko, zbyt daleko", src: "https://archive.org/download/szeoty-moreny-muzyka/Zbytbliskozbytdaleko.mp3" },
-            { title: "Szepty Moreny — Lepsze życie", src: "https://archive.org/download/szeoty-moreny-muzyka/Lepszezycie.mp3" },
-            { title: "Szepty Moreny — Jestem tu bez ciebie", src: "https://archive.org/download/szeoty-moreny-muzyka/Jestemtubezciebie.mp3" },
-            { title: "Szepty Moreny — W innym świecie", src: "https://archive.org/download/szeoty-moreny-muzyka/Winnymswiecie.mp3" },
-            { title: "Szepty Moreny — W prezencie", src: "https://archive.org/download/szeoty-moreny-muzyka/Wprezencie.mp3" },
-            { title: "Szepty Moreny — W swoim niebie", src: "https://archive.org/download/szeoty-moreny-muzyka/Wswoimniebie.mp3" },
-            { title: "Szepty Moreny — Zabierz mnie tam", src: "https://archive.org/download/szeoty-moreny-muzyka/Zabierzmnietam.mp3" },
-            { title: "Szepty Moreny — Zepsute owoce", src: "https://archive.org/download/szeoty-moreny-muzyka/Zepsuteowoce.mp3" },
-            { title: "Szepty Moreny — Zimno mi", src: "https://archive.org/download/szeoty-moreny-muzyka/Zinmomi.mp3" }
+            { title: "Szepty Moreny — Córka mroku", src: "https://archive.org/download/szeoty-moreny-muzyka/corka-mroku.mp3" },
+            { title: "Szepty Moreny — Do snu", src: "https://archive.org/download/szeoty-moreny-muzyka/do-snu.mp3" },
+            { title: "Szepty Moreny — Drzazga", src: "https://archive.org/download/szeoty-moreny-muzyka/drzazga.mp3" },
+            { title: "Szepty Moreny — Głód miłości", src: "https://archive.org/download/szeoty-moreny-muzyka/glod-milosci.mp3" },
+            { title: "Szepty Moreny — Gorzka czekolada", src: "https://archive.org/download/szeoty-moreny-muzyka/gorzka-czekolada.mp3" },
+            { title: "Szepty Moreny — Iluzja", src: "https://archive.org/download/szeoty-moreny-muzyka/iluzja.mp3" },
+            { title: "Szepty Moreny — Jak świecę", src: "https://archive.org/download/szeoty-moreny-muzyka/jak-swiece.mp3" },
+            { title: "Szepty Moreny — Kamienny golem", src: "https://archive.org/download/szeoty-moreny-muzyka/kamienny-golem.mp3" },
+            { title: "Szepty Moreny — Mieliśmy być wspomnieniem", src: "https://archive.org/download/szeoty-moreny-muzyka/mielismy-byc-wspomnieniem.mp3" },
+            { title: "Szepty Moreny — Modlitwy", src: "https://archive.org/download/szeoty-moreny-muzyka/modlitwy.mp3" },
+            { title: "Szepty Moreny — Monster", src: "https://archive.org/download/szeoty-moreny-muzyka/monster.mp3" },
+            { title: "Szepty Moreny — Nie zasłużyliśmy na miłość", src: "https://archive.org/download/szeoty-moreny-muzyka/nie-zasluzylismy-na-milosc.mp3" },
+            { title: "Szepty Moreny — Papierowy motyl", src: "https://archive.org/download/szeoty-moreny-muzyka/papierowy-motyl.mp3" },
+            { title: "Szepty Moreny — Pod tym samym niebem", src: "https://archive.org/download/szeoty-moreny-muzyka/pod-tym-samym-niebem.mp3" },
+            { title: "Szepty Moreny — Pokaż mi swoją miłość", src: "https://archive.org/download/szeoty-moreny-muzyka/pokaz-mi-swoja-milosc.mp3" },
+            { title: "Szepty Moreny — Strzała amora", src: "https://archive.org/download/szeoty-moreny-muzyka/strzala-amora.mp3" },
+            { title: "Szepty Moreny — Szczęścia łzy", src: "https://archive.org/download/szeoty-moreny-muzyka/szczescia-lzy.mp3" },
+            { title: "Szepty Moreny — To tylko sen", src: "https://archive.org/download/szeoty-moreny-muzyka/to-tylko-sen.mp3" },
+            { title: "Szepty Moreny — Tyle co nic", src: "https://archive.org/download/szeoty-moreny-muzyka/tyle-co-nic.mp3" },
+            { title: "Szepty Moreny — Tylko ciebie", src: "https://archive.org/download/szeoty-moreny-muzyka/tylko-ciebie.mp3" },
+            { title: "Szepty Moreny — W ciszy", src: "https://archive.org/download/szeoty-moreny-muzyka/w-ciszy.mp3" },
+            { title: "Szepty Moreny — We śnie", src: "https://archive.org/download/szeoty-moreny-muzyka/we-snie.mp3" },
+            { title: "Szepty Moreny — Anioły", src: "https://archive.org/download/szeoty-moreny-muzyka/anioly.mp3" },
+            { title: "Szepty Moreny — Jesteś snem", src: "https://archive.org/download/szeoty-moreny-muzyka/jestes-snem1.mp3" },
+            { title: "Szepty Moreny — Fragmenty", src: "https://archive.org/download/szeoty-moreny-muzyka/fragmenty.mp3" },
+            { title: "Szepty Moreny — We mgle", src: "https://archive.org/download/szeoty-moreny-muzyka/we-mgle.mp3" },
+            { title: "Szepty Moreny — Pozwól mi odejść", src: "https://archive.org/download/szeoty-moreny-muzyka/pozwol-mi-odejsc.mp3" },
+            { title: "Szepty Moreny — Wilczy głód", src: "https://archive.org/download/szeoty-moreny-muzyka/wilczy-glod.mp3" },
+            { title: "Szepty Moreny — Wpełznij", src: "https://archive.org/download/szeoty-moreny-muzyka/wpelznij.mp3" },
+            { title: "Szepty Moreny — Szanuj czas", src: "https://archive.org/download/szeoty-moreny-muzyka/szanuj-czas.mp3" },
+            { title: "Szepty Moreny — Żywy trup", src: "https://archive.org/download/szeoty-moreny-muzyka/zywy-trup.mp3" },
+            { title: "Szepty Moreny — Gościnna dziewczyna", src: "https://archive.org/download/szeoty-moreny-muzyka/goscinna-dziewczyna.mp3" },
+            { title: "Szepty Moreny — Brudny raj", src: "https://archive.org/download/szeoty-moreny-muzyka/brudny-raj.mp3" },
+            { title: "Szepty Moreny — List miłosny pisany krwią", src: "https://archive.org/download/szeoty-moreny-muzyka/list-milosny-pisany-krwia.mp3" },
+            { title: "Szepty Moreny — Zbuntowany anioł", src: "https://archive.org/download/szeoty-moreny-muzyka/zbuntowany-aniol.mp3" },
+            { title: "Szepty Moreny — Złoty strzał", src: "https://archive.org/download/szeoty-moreny-muzyka/zloty-strzal.mp3" },
+            { title: "Szepty Moreny — Przychodzą, odchodzą", src: "https://archive.org/download/szeoty-moreny-muzyka/przychodza-odchodza.mp3" },
+            { title: "Szepty Moreny — Oddam ci", src: "https://archive.org/download/szeoty-moreny-muzyka/oddam-ci.mp3" },
+            { title: "Szepty Moreny — Nie przytulę wspomnień", src: "https://archive.org/download/szeoty-moreny-muzyka/nie-przytule-wspomnien.mp3" },
+            { title: "Szepty Moreny — Między nami", src: "https://archive.org/download/szeoty-moreny-muzyka/miedzy-nami.mp3" },
+            { title: "Szepty Moreny — Marzy mi się", src: "https://archive.org/download/szeoty-moreny-muzyka/marzy-mi-sie.mp3" },
+            { title: "Szepty Moreny — Zbyt blisko, zbyt daleko", src: "https://archive.org/download/szeoty-moreny-muzyka/zbyt-blisko-zbyt-daleko.mp3" },
+            { title: "Szepty Moreny — Lepsze życie", src: "https://archive.org/download/szeoty-moreny-muzyka/lepsze-zycie.mp3" },
+            { title: "Szepty Moreny — Jestem tu bez ciebie", src: "https://archive.org/download/szeoty-moreny-muzyka/jestem-tu-bez-ciebie.mp3" },
+            { title: "Szepty Moreny — W innym świecie", src: "https://archive.org/download/szeoty-moreny-muzyka/w-innym-swiecie.mp3" },
+            { title: "Szepty Moreny — W prezencie", src: "https://archive.org/download/szeoty-moreny-muzyka/w-prezencie.mp3" },
+            { title: "Szepty Moreny — W swoim niebie", src: "https://archive.org/download/szeoty-moreny-muzyka/w-swoim-niebie.mp3" },
+            { title: "Szepty Moreny — Zabierz mnie tam", src: "https://archive.org/download/szeoty-moreny-muzyka/zabierz-mnie-tam.mp3" },
+            { title: "Szepty Moreny — Zepsute owoce", src: "https://archive.org/download/szeoty-moreny-muzyka/zepsute-owoce.mp3" },
+            { title: "Szepty Moreny — Zimno mi", src: "https://archive.org/download/szeoty-moreny-muzyka/zimno-mi.mp3" }
         ];
 
         const audio = document.getElementById('audioPlayer');
@@ -1098,61 +1099,66 @@
 
         let currentIndex = 0;
 
-        function initPlayer() {
-            if (playlist.length > 0) {
-                audio.src = playlist[currentIndex].src;
-                trackInfo.textContent = playlist[currentIndex].title;
-            }
+        function loadTrack(index) {
+            audio.src = playlist[index].src;
+            trackInfo.textContent = playlist[index].title;
+            audio.load();
         }
 
-        playBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    playBtn.textContent = 'Pauza';
-                    if (winyl) winyl.classList.add('rotating');
-                }).catch(err => {
-                    console.log("Błąd odtwarzania:", err);
-                });
-            } else {
-                audio.pause();
-                playBtn.textContent = 'Odtwórz';
-                if (winyl) winyl.classList.remove('rotating');
-            }
-        });
+        if (playBtn) {
+            playBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    if (!audio.src) {
+                        loadTrack(currentIndex);
+                    }
+                    audio.play().then(() => {
+                        playBtn.textContent = 'Pauza';
+                        if (winyl) winyl.classList.add('rotating');
+                    }).catch(err => {
+                        console.log("Błąd odtwarzania:", err);
+                        // Jeśli pierwszy utwór napotka błąd, automatycznie przełącz na następny, żeby odblokować radio
+                        currentIndex = (currentIndex + 1) % playlist.length;
+                        loadTrack(currentIndex);
+                        audio.play().catch(e => console.log("Kolejny też zablokowany:", e));
+                    });
+                } else {
+                    audio.pause();
+                    playBtn.textContent = 'Odtwórz';
+                    if (winyl) winyl.classList.remove('rotating');
+                }
+            });
+        }
 
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % playlist.length;
-                audio.src = playlist[currentIndex].src;
-                trackInfo.textContent = playlist[currentIndex].title;
+                loadTrack(currentIndex);
                 audio.play().then(() => {
                     playBtn.textContent = 'Pauza';
                     if (winyl) winyl.classList.add('rotating');
-                });
+                }).catch(err => console.log("Błąd next:", err));
             });
         }
 
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-                audio.src = playlist[currentIndex].src;
-                trackInfo.textContent = playlist[currentIndex].title;
+                loadTrack(currentIndex);
                 audio.play().then(() => {
                     playBtn.textContent = 'Pauza';
                     if (winyl) winyl.classList.add('rotating');
-                });
+                }).catch(err => console.log("Błąd prev:", err));
             });
         }
 
         audio.addEventListener('ended', () => {
             currentIndex = (currentIndex + 1) % playlist.length;
-            audio.src = playlist[currentIndex].src;
-            trackInfo.textContent = playlist[currentIndex].title;
-            audio.play().catch(err => console.log("Błąd kolejnego utworu:", err));
+            loadTrack(currentIndex);
+            audio.play().catch(err => console.log("Błąd ended:", err));
         });
 
-        // Start inicjalizacji
-        initPlayer();
+       // Załaduj pierwszy utwór przy starcie
+        loadTrack(currentIndex);
 
         // Licznik odwiedzin
         let visits = localStorage.getItem('szepty_visits');
@@ -1163,6 +1169,7 @@
             counterEl.innerText = visits;
         }
     </script>
+    
     <footer class="site-footer">
         <p>&copy; 2026 Szepty Moreny. Wszelkie prawa zastrzeżone.</p>
     </footer>

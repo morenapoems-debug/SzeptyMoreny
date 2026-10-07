@@ -1033,7 +1033,7 @@
             }
         }
 
-        const rawPlaylist = [
+       const playlist = [
             { title: "Szepty Moreny — Adios", src: "https://archive.org/download/szeoty-moreny-muzyka/Adios.mp3" },
             { title: "Szepty Moreny — Córka mroku", src: "https://archive.org/download/szeoty-moreny-muzyka/Corkamroku.mp3" },
             { title: "Szepty Moreny — Do snu", src: "https://archive.org/download/szeoty-moreny-muzyka/Dosnu.mp3" },
@@ -1084,20 +1084,8 @@
             { title: "Szepty Moreny — W swoim niebie", src: "https://archive.org/download/szeoty-moreny-muzyka/Wswoimniebie.mp3" },
             { title: "Szepty Moreny — Zabierz mnie tam", src: "https://archive.org/download/szeoty-moreny-muzyka/Zabierzmnietam.mp3" },
             { title: "Szepty Moreny — Zepsute owoce", src: "https://archive.org/download/szeoty-moreny-muzyka/Zepsuteowoce.mp3" },
-            { title: "Szepty Moreny — Zimno mi", src: "https://archive.org/download/szeoty-moreny-muzyka/Zinmomi.mp3" },
+            { title: "Szepty Moreny — Zimno mi", src: "https://archive.org/download/szeoty-moreny-muzyka/Zinmomi.mp3" }
         ];
-
-        // Funkcja losująca (Fisher-Yates shuffle) do przetasowania całej playlisty przy wejściu
-        function shuffleArray(array) {
-            let shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
-
-        const playlist = shuffleArray(rawPlaylist);
 
         const audio = document.getElementById('audioPlayer');
         const playBtn = document.getElementById('playBtn');
@@ -1108,112 +1096,65 @@
 
         let currentIndex = 0;
 
-        function loadTrack(index) {
-            audio.src = playlist[index].src;
-            trackInfo.textContent = playlist[index].title;
-        }
-
-        function playTrack() {
-            audio.load();
-            audio.play().then(() => {
-                playBtn.textContent = 'Pauza';
-                winyl.classList.add('rotating');
-                
-                if ('mediaSession' in navigator) {
-                    navigator.mediaSession.playbackState = 'playing';
-                    navigator.mediaSession.metadata = new MediaMetadata({
-                        title: playlist[currentIndex].title,
-                        artist: 'Szepty Moreny',
-                        album: 'Radio / Winyl'
-                    });
-                }
-            }).catch(error => {
-                console.log("Autoplay zablokowany lub błąd:", error);
-                playBtn.textContent = 'Odtwórz';
-                winyl.classList.remove('rotating');
-            });
-        }
-
-        function pauseTrack() {
-            audio.pause();
-            playBtn.textContent = 'Odtwórz';
-            winyl.classList.remove('rotating');
-            
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.playbackState = 'paused';
+        function initPlayer() {
+            if (playlist.length > 0) {
+                audio.src = playlist[currentIndex].src;
+                trackInfo.textContent = playlist[currentIndex].title;
             }
         }
 
         playBtn.addEventListener('click', () => {
             if (audio.paused) {
-                if (!audio.src || audio.src === window.location.href) {
-                    loadTrack(currentIndex);
-                }
-                playTrack();
+                audio.play().then(() => {
+                    playBtn.textContent = 'Pauza';
+                    if (winyl) winyl.classList.add('rotating');
+                }).catch(err => {
+                    console.log("Błąd odtwarzania:", err);
+                });
             } else {
-                pauseTrack();
+                audio.pause();
+                playBtn.textContent = 'Odtwórz';
+                if (winyl) winyl.classList.remove('rotating');
             }
         });
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % playlist.length;
+                audio.src = playlist[currentIndex].src;
+                trackInfo.textContent = playlist[currentIndex].title;
+                audio.play().then(() => {
+                    playBtn.textContent = 'Pauza';
+                    if (winyl) winyl.classList.add('rotating');
+                });
+            });
+        }
 
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-                loadTrack(currentIndex);
-                playTrack();
+                audio.src = playlist[currentIndex].src;
+                trackInfo.textContent = playlist[currentIndex].title;
+                audio.play().then(() => {
+                    playBtn.textContent = 'Pauza';
+                    if (winyl) winyl.classList.add('rotating');
+                });
             });
         }
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % playlist.length;
-            loadTrack(currentIndex);
-            playTrack();
-        });
 
         audio.addEventListener('ended', () => {
             currentIndex = (currentIndex + 1) % playlist.length;
             audio.src = playlist[currentIndex].src;
             trackInfo.textContent = playlist[currentIndex].title;
-            
-            audio.load();
-            audio.play().then(() => {
-                playBtn.textContent = 'Pauza';
-                winyl.classList.add('rotating');
-                if ('mediaSession' in navigator) {
-                    navigator.mediaSession.playbackState = 'playing';
-                    navigator.mediaSession.metadata = new MediaMetadata({
-                        title: playlist[currentIndex].title,
-                        artist: 'Szepty Moreny',
-                        album: 'Radio / Winyl'
-                    });
-                }
-            }).catch(err => {
-                console.log("Błąd przejścia w tle:", err);
-            });
+            audio.play().catch(err => console.log("Błąd kolejnego utworu:", err));
         });
 
-        if ('mediaSession' in navigator) {
-            navigator.mediaSession.setActionHandler('play', () => { playTrack(); });
-            navigator.mediaSession.setActionHandler('pause', () => { pauseTrack(); });
-            navigator.mediaSession.setActionHandler('previoustrack', () => {
-                currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-                loadTrack(currentIndex);
-                playTrack();
-            });
-            navigator.mediaSession.setActionHandler('nexttrack', () => {
-                currentIndex = (currentIndex + 1) % playlist.length;
-                loadTrack(currentIndex);
-                playTrack();
-            });
-        }
+        // Start inicjalizacji
+        initPlayer();
 
-        loadTrack(currentIndex);
-
+        // Licznik odwiedzin
         let visits = localStorage.getItem('szepty_visits');
-        if (!visits) {
-            visits = 142;
-        } else {
-            visits = parseInt(visits) + 1;
-        }
+        visits = visits ? parseInt(visits) + 1 : 142;
         localStorage.setItem('szepty_visits', visits);
         const counterEl = document.getElementById('counter');
         if (counterEl) {

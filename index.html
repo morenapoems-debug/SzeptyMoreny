@@ -1109,8 +1109,8 @@
 
         function loadTrack(index) {
             audio.src = playlist[index].src;
-            audio.load();
             trackInfo.textContent = playlist[index].title;
+            // Usunięto audio.load(), ponieważ na telefonach w tle wymusza to ponowne pobieranie i zrywa ciągłość
         }
 
         function playTrack() {
@@ -1147,14 +1147,16 @@
             playTrack();
         });
 
-        // Bezpieczniejsze przejście do kolejnego utworu w tle
+        // Poprawione, bezpieczniejsze przejście dla odtwarzania w tle na telefonach
         audio.addEventListener('ended', () => {
             currentIndex = (currentIndex + 1) % playlist.length;
-            loadTrack(currentIndex);
-            // Krótkie opóźnienie pomaga procesorom telefonów w tle na płynne złapanie nowego źródła
+            audio.src = playlist[currentIndex].src;
+            trackInfo.textContent = playlist[currentIndex].title;
+            
+            // Dłuższe opóźnienie (600ms) daje telefonowi czas na przepchnięcie bufora audio w zminimalizowanym oknie
             setTimeout(() => {
                 playTrack();
-            }, 300);
+            }, 600);
         });
 
         // Wstępne załadowanie losowego utworu na start

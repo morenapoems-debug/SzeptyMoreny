@@ -1110,13 +1110,22 @@
         function loadTrack(index) {
             audio.src = playlist[index].src;
             trackInfo.textContent = playlist[index].title;
-            // Usunięto audio.load(), ponieważ na telefonach w tle wymusza to ponowne pobieranie i zrywa ciągłość
         }
 
         function playTrack() {
             audio.play().then(() => {
                 playBtn.textContent = 'Pauza';
                 winyl.classList.add('rotating');
+                
+                // Kluczowe dla telefonu: informujemy system, że sesja medialna jest aktywna
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.playbackState = 'playing';
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: playlist[currentIndex].title,
+                        artist: 'Szepty Moreny',
+                        album: 'Radio / Winyl'
+                    });
+                }
             }).catch(error => {
                 console.log("Autoplay zablokowany lub błąd:", error);
                 playBtn.textContent = 'Odtwórz';
@@ -1128,6 +1137,10 @@
             audio.pause();
             playBtn.textContent = 'Odtwórz';
             winyl.classList.remove('rotating');
+            
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.playbackState = 'paused';
+            }
         }
 
         playBtn.addEventListener('click', () => {
@@ -1147,17 +1160,28 @@
             playTrack();
         });
 
-        // Poprawione, bezpieczniejsze przejście dla odtwarzania w tle na telefonach
+        // Płynne przechodzenie między utworami
         audio.addEventListener('ended', () => {
             currentIndex = (currentIndex + 1) % playlist.length;
             audio.src = playlist[currentIndex].src;
             trackInfo.textContent = playlist[currentIndex].title;
             
-            // Dłuższe opóźnienie (600ms) daje telefonowi czas na przepchnięcie bufora audio w zminimalizowanym oknie
             setTimeout(() => {
                 playTrack();
             }, 600);
         });
+
+        // --- SPRYTNY STRAŻNIK TLA (WAP / WakeLock / Heartbeat) ---
+        // Zapobiega uśpieniu radia przez system telefonu po kilku utworach
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.setActionHandler('play', () => { playTrack(); });
+            navigator.mediaSession.setActionHandler('pause', () => { pauseTrack(); });
+            navigator.mediaSession.setActionHandler('nexttrack', () => {
+                currentIndex = (currentIndex + 1) % playlist.length;
+                loadTrack(currentIndex);
+                playTrack();
+            });
+        }
 
         // Wstępne załadowanie losowego utworu na start
         loadTrack(currentIndex);
